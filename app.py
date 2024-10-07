@@ -1,7 +1,7 @@
 import streamlit as st
 from langchain_core.messages import AIMessage, HumanMessage
 from src.Process_URL import Process
-from Handle_userquery import get_response
+from src.Handle_userquery import get_response
 
 # app config
 st.set_page_config(page_title="BlogGPT", page_icon="🤖")

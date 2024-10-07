@@ -56,19 +56,5 @@ def get_response(user_query: str, session_vector_store=None):
         "input": user_query
     })
     
-    print('The response',response)
-    copy_response = [response['answer'].split(' ')]
-    start = 0, end = len(copy_response)
-    for ind, word in enumerate(copy_response):
-        if word == 'Assistant:':
-            start = ind
-        if word == 'human':
-            end = ind 
-            break
-    
-    final_response = copy_response[start:end]
-    # Return the response or a fallback answer
-    
-    return str(final_response)
-    # return response.get("answer", "Sorry, I couldn't find an answer to your question.")
+    return response.get("answer", "Sorry, I couldn't find an answer to your question.").replace('Assistant:','')
 
