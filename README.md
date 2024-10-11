@@ -1,6 +1,6 @@
 # Your Personal Blog Assistant – BlogGPT 🤖 !
 
-![image](https://github.com/user-attachments/assets/8476cc59-b74a-44bb-8a09-e6e9b7ba14cf)
+<img src="https://github.com/user-attachments/assets/8476cc59-b74a-44bb-8a09-e6e9b7ba14cf" alt="example image" height=500 width="350"/>
 
 ### 🚀 **Overview**
 BlogGPT is an AI-powered app that answers your questions by processing and analyzing blog content from any URL. With a simple interface and intelligent backend, it delivers accurate responses based on the content it retrieves.
