@@ -10,25 +10,26 @@ load_dotenv()
 # Create the conversational QA chain using history-aware retriever
 def RAG_conversation_chain(vector_store):
     llm = HuggingFaceEndpoint(
-        repo_id="HuggingFaceH4/zephyr-7b-beta",  # Zephyr 7B model
-        task="text-generation",                  
-        max_new_tokens=512,                      
-        do_sample=True,                          
-        temperature=0.7,                         
-        repetition_penalty=1.03,  
-        stop=["\n"]
-    )
+    repo_id="mistralai/Mixtral-8x7B-Instruct-v0.1",
+    task="text-generation",
+    max_new_tokens=512,
+    do_sample=True,
+    temperature=0.7,
+    repetition_penalty=1.03,
+)
     
     retriever = vector_store.as_retriever()
     
     system_prompt = (
-    "You are an assistant for question-answering tasks. "
-    "Use the following pieces of retrieved context to answer "
-    "the question. If you don't know the answer, say that you "
-    "don't know."
+    "You are an intelligent and helpful assistant tasked with answering user queries based on the following retrieved context. "
+    "If the context provides the answer, respond clearly and concisely. If the context does not cover the question, "
+    "admit that you don't know the answer, but offer suggestions for where the user might find the information. "
+    "Ensure that your responses are informative, polite, and relevant to the user's query. Be mindful of avoiding unnecessary details."
     "\n\n"
-    "{context}"
+    "Context: {context}\n\n"
+    "Answer the user's query based on the provided context."
     )
+
     
     prompt = ChatPromptTemplate.from_messages(
     [
@@ -56,5 +57,5 @@ def get_response(user_query: str, session_vector_store=None):
         "input": user_query
     })
     
-    return response.get("answer", "Sorry, I couldn't find an answer to your question.").replace('Assistant:','')
+    return response.get("answer", "Sorry, I couldn't find an answer to your question.").replace('Assistant:','').replace('assistant:','')
 

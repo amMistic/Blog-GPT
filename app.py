@@ -21,7 +21,7 @@ if 'url' not in st.session_state:
 
 # allow user to first drop the website url to chat 
 with st.sidebar:
-    st.markdown('# BlogGPT [o _ o]')
+    st.markdown('# [o_o] BlogGPT ')
     url = st.text_input('URL')
     
     if url:
@@ -39,16 +39,13 @@ if st.session_state.visible:
     user_query = st.chat_input('Drop your query here')
     
     if user_query:
-        if user_query == 'exit':
-            exit()
         response = get_response(user_query, st.session_state.vector_store)
-        
         st.session_state.chat_history.append(HumanMessage(content=user_query))
         st.session_state.chat_history.append(AIMessage(content=response))
 
         # Optionally clear the input field after sending the message
         user_query = ''
-    
+
         # Display chat messages
         for message in st.session_state.chat_history:
             if isinstance(message, AIMessage):
